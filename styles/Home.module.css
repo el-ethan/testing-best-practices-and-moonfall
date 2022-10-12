@@ -2,6 +2,18 @@
   padding: 0 2rem;
 }
 
+.failText {
+  color: red;
+}
+
+.passText {
+  color: green;
+}
+
+.clickableText {
+  cursor: pointer;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
