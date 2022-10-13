@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <Image src={'https://i.imgur.com/WUk3xLc.jpeg'} alt="Moonfall movie poster" height="500" width="500" />
+        <Image src={'https://i.imgur.com/WUk3xLc.jpeg'} alt="Moonfall movie poster" height="400" width="600" />
         <Spoiler />
       </main>
     </div>
