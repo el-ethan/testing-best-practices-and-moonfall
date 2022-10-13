@@ -12,7 +12,7 @@ export const Spoiler = () => {
       {showSpoiler && <h1 data-testid="spoiler-text">
         {titleCase('the moon is a megastructure.')}
       </h1>}
-      <button className={styles.button} onClick={() => setShowSpoiler(true)}>Spoil</button>
+      <button className={styles.button} id="spoil-button" onClick={() => setShowSpoiler(true)}>Spoil</button>
     </div>
   )
 }
