@@ -39,6 +39,7 @@ describe('Don\'t test your implementation details (test "what" not "how")', () =
 
 describe('Take care when asserting absence', () => {
 
+  // only bad in isolation, and if you don't follow other best practices   
   it('hides the spoiler by default', () => {
     const { queryByTestId } = render(<Spoiler />)
 
