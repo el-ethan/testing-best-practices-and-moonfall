@@ -18,6 +18,10 @@ describe('Make your tests fail', () => {
 
 describe('Don\'t test your implementation details (test "what" not "how")', () => {
 
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   // bad
   it('uses titleCase package to put spoiler in all caps', () => {
     const { getByText } = render(<Spoiler />)    
