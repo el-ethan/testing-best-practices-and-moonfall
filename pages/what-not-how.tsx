@@ -10,7 +10,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-                Make your tests <span className={[failing ? styles.failText : styles.passText, styles.clickableText].join(' ')} onClick={() => setFailing(!failing)}>{failing ? 'fail' : 'pass'}</span>
+            Don't test implementation details 
         </h1>
             
       </main>
