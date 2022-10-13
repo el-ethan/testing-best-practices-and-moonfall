@@ -9,9 +9,11 @@ export const Spoiler = () => {
   const [showSpoiler, setShowSpoiler] = useState(false)
   return (
     <div>
-      {showSpoiler && <h1 data-testid="spoiler-text">
-        {titleCase('the moon is a megastructure.')}
-      </h1>}
+      {
+        showSpoiler && <h1 data-testid="spoiler-text">
+          {titleCase('the moon is a megastructure.')}
+        </h1>
+      }
       <button className={styles.button} id="spoil-button" onClick={() => setShowSpoiler(true)}>Spoil</button>
     </div>
   )

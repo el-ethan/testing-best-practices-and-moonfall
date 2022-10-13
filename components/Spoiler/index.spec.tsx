@@ -19,7 +19,7 @@ describe('Make your tests fail', () => {
 describe('Don\'t test your implementation details (test "what" not "how")', () => {
 
   // bad
-  it('uses toUppercase to put spoiler in all caps', () => {
+  it('uses titleCase package to put spoiler in all caps', () => {
     const { getByText } = render(<Spoiler />)    
     
     fireEvent.click(getByText('Spoil'))
@@ -32,39 +32,76 @@ describe('Don\'t test your implementation details (test "what" not "how")', () =
     const { getByTestId, getByText } = render(<Spoiler />)    
     fireEvent.click(getByText('Spoil'))
     
-    expect(getByTestId('spoiler-text').innerHTML).toBe('The Moon Is a Megastructure.');
+    expect(getByTestId('spoiler-text').textContent).toBe('The Moon Is a Megastructure.');
   });
 
 })
-
-describe('Use one assertion per test (or as few assertions as possible)', () => {})
-
-describe('Name your tests well', () => {})
 
 describe('Take care when asserting absence', () => {
 
   it('hides the spoiler by default', () => {
     const { queryByTestId } = render(<Spoiler />)
-            
-    expect(queryByTestId('spoiler-text')).toBeNull();
+
+    expect(queryByTestId('spoiler-texts')).toBeNull();
   })
 
 })
 
 describe('Avoid overly general selectors', () => {
+
   it('title cases the spoiler', () => {
     const { getByTestId } = render(<Spoiler />)    
     fireEvent.click(document.querySelector('.button'))
         
     expect(getByTestId('spoiler-text').innerHTML).toBe('The Moon Is a Megastructure.');
   });
+
+  // good
+  it('title cases the spoiler', () => {
+    const { getByTestId } = render(<Spoiler />)    
+    fireEvent.click(document.querySelector('#spoil-button')) // or better yet, use a data-testid: [data-test-id="spoil-button"]!
+                
+    expect(getByTestId('spoiler-text').innerHTML).toBe('The Moon Is a Megastructure.');
+  });
+
 })
 
 describe('Avoid overly specific selectors', () => {
+
+  // bad
   it('title cases the spoiler', () => {
     const { getByTestId } = render(<Spoiler />)    
     fireEvent.click(document.querySelector('div > button.button#spoil-button'))
             
     expect(getByTestId('spoiler-text').innerHTML).toBe('The Moon Is a Megastructure.');
+  });
+
+  // good
+  it('title cases the spoiler', () => {
+    const { getByTestId } = render(<Spoiler />)    
+    fireEvent.click(document.querySelector('#spoil-button')) // or better yet, use a data-testid: [data-test-id="spoil-button"]!
+                
+    expect(getByTestId('spoiler-text').innerHTML).toBe('The Moon Is a Megastructure.');
+  });
+})
+
+describe('Make your test names and assertions clear', () => {
+
+  // bad
+  it('should format the spoiler correctly', () => {
+    const { getByTestId, getByText } = render(<Spoiler />)    
+    fireEvent.click(getByText('Spoil'))
+                
+    expect([...getByTestId('spoiler-text').textContent].pop()).toBe('.');
+  });
+
+  // good
+  it('should format the spoiler with a period at the end', () => {
+    const { getByTestId, getByText } = render(<Spoiler />)    
+    fireEvent.click(getByText('Spoil'))
+
+    const lastCharacterOfSpoiler = [...getByTestId('spoiler-text').textContent].pop()
+    
+    expect(lastCharacterOfSpoiler).toBe('.');
   });
 })
